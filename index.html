@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Signed Bat Verification</title>
+</head>
+
+<body style="margin:0; background:#0b0b0b; color:#ffffff; font-family:Arial, sans-serif;">
+
+  <!-- PAGE 1: ENTRY -->
+  <div id="page1" style="text-align:center; padding-top:120px;">
+    <h1>🏏 Official Signed Bat Claim</h1>
+
+    <p style="font-size:18px; margin-top:25px;">
+      Enter your name to verify fan identity
+    </p>
+
+    <input id="nameInput" type="text" placeholder="Your name"
+      style="padding:10px; font-size:16px; width:240px; margin-top:20px;">
+
+    <br><br>
+
+    <button onclick="startVerification()"
+      style="padding:10px 30px; font-size:16px; cursor:pointer;">
+      Verify
+    </button>
+
+    <p style="font-size:12px; color:#888; margin-top:40px;">
+      *Limited offer | Terms apply
+    </p>
+  </div>
+
+  <!-- PAGE 2: LOADING -->
+  <div id="page2" style="display:none; text-align:center; padding-top:140px;">
+    <h2>Verifying fan loyalty…</h2>
+    <p id="loadingText" style="font-size:18px; margin-top:25px;"></p>
+  </div>
+
+  <!-- PAGE 3: ROAST -->
+  <div id="page3" style="display:none; text-align:center; padding-top:80px;">
+    <h1 id="roastTitle"></h1>
+
+    <p id="roastMain" style="font-size:22px; margin-top:30px;"></p>
+    <p id="roastExtra" style="font-size:18px; margin-top:20px;"></p>
+
+    <p style="font-size:14px; color:#888; margin-top:40px;">
+      Signed bat unavailable due to poor decision-making.
+    </p>
+
+    <button onclick="newRoast()"
+      style="margin-top:40px; padding:10px 25px; font-size:15px; cursor:pointer;">
+      Retry Verification
+    </button>
+  </div>
+
+  <script>
+    var userName = "";
+
+    var loadingSteps = [
+      "Connecting to team servers…",
+      "Checking fan database…",
+      "Analyzing click confidence…",
+      "Re-evaluating common sense…",
+      "Yeah… no."
+    ];
+
+    var roasts = [
+      "You saw the link and thought, yeah… today is my lucky day.",
+      "This is why teachers say: read carefully.",
+      "A signed bat. Through email. In this economy.",
+      "You didn’t even hesitate. That’s the funniest part.",
+      "Curiosity really said: ruin his day gently.",
+      "This click will be remembered longer than your achievements.",
+      "You trusted this faster than you trust common sense.",
+      "Some people verify facts. You verify vibes.",
+      "You really said: what could possibly go wrong?",
+      "This was less fan loyalty and more blind optimism.",
+
+      "You clicked like it was a reflex. Science should study you.",
+      "That confidence while clicking? Misplaced.",
+      "Hope entered the chat. Logic left immediately.",
+      "This is why links say think before you click.",
+      "You didn’t fall for the bait. You swan-dived.",
+      "Some people doubt miracles. You applied for one.",
+      "You read signed bat and stopped thinking.",
+      "This wasn’t luck. This was enthusiasm without brakes.",
+      "Your curiosity deserves applause. Your judgment does not.",
+      "You clicked first, questioned later. Classic move.",
+
+      "Somewhere, common sense quietly sighed.",
+      "This page exists because of choices you made.",
+      "You believed. And belief betrayed you.",
+      "This click had confidence, not wisdom.",
+      "You didn’t get a signed bat, but you got character development.",
+      "Lesson learned: excitement is not evidence.",
+      "This was a practical exam. You failed gracefully.",
+      "You saw the promise, ignored the probability.",
+      "This is what peak optimism looks like.",
+      "The bat was imaginary. The embarrassment is real."
+    ];
+
+    function startVerification() {
+      userName = document.getElementById("nameInput").value.trim();
+      if (userName === "") {
+        alert("Enter your name. Don’t dodge accountability.");
+        return;
+      }
+
+      document.getElementById("page1").style.display = "none";
+      document.getElementById("page2").style.display = "block";
+
+      var i = 0;
+      var interval = setInterval(function () {
+        document.getElementById("loadingText").innerText = loadingSteps[i];
+        i++;
+        if (i === loadingSteps.length) {
+          clearInterval(interval);
+          setTimeout(showRoast, 700);
+        }
+      }, 900);
+    }
+
+    function showRoast() {
+      document.getElementById("page2").style.display = "none";
+      document.getElementById("page3").style.display = "block";
+      newRoast();
+    }
+
+    function newRoast() {
+      var roast = roasts[Math.floor(Math.random() * roasts.length)];
+
+      document.getElementById("roastTitle").innerText =
+        "Verification Failed, " + userName + " ❌";
+
+      document.getElementById("roastMain").innerText = roast;
+
+      document.getElementById("roastExtra").innerText =
+        userName + ", clicking retry will not improve this outcome.";
+    }
+  </script>
+
+</body>
+</html>
